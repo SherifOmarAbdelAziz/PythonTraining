@@ -27,3 +27,17 @@ jobs:
       - name: Run Robot tests
         run: |
           robot tests/
+        
+      - name: Run Dummy Step
+        run: >
+          echo "Hello from"
+          echo "Hello from Github Actions"
+
+      - name: upload Robot Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            log.html
+            output.xml
+            report.html
