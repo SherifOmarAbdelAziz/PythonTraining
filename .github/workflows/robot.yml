@@ -47,9 +47,11 @@ jobs:
         with:
           path: reports
 
-    deploy:
-      needs: test
-      runs-on: ubuntu-latest
-      - name: Deploy to Github Pages
-        uses: actions/deploy-pages@v4
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Deploy to Github Pages
+      uses: actions/deploy-pages@v4
         
