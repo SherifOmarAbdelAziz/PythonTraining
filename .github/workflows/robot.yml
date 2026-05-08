@@ -47,6 +47,14 @@ jobs:
       #       output.xml
       #       report.html
 
+      - name: Create index page
+        run: |
+          cp reports/report.html reports/index.html
+
+      - name: Verify reports
+        run: |
+          ls -R reports
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -62,5 +70,6 @@ jobs:
 
     steps:
     - name: Deploy to Github Pages
+      id: deployment
       uses: actions/deploy-pages@v4
         
