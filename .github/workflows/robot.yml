@@ -49,11 +49,19 @@ jobs:
 
       - name: Create index page
         run: |
-          cp reports/report.html reports/index.html
+          if [ -f reports/report.html ]; then
+            cp reports/report.html reports/index.html
+          else
+            echo "report.html not found!"
+            exit 1
+          fi
 
       - name: Verify reports
         run: |
-          ls -R reports
+          pwd
+          ls
+          ls reports
+          find reports
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
