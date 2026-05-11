@@ -36,7 +36,7 @@ jobs:
       - name: Run TestSuite
         run: |  
           python3 examples/sample_test.py
-          robot --outputdir reports framework/core/smoke.robot
+          robot --outputdir reports src/framework/core/smoke.robot
 
       - name: Run Dummy Step
         run: >
