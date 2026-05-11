@@ -42,7 +42,7 @@ jobs:
       - name: Run TestSuite
         run: |
           poetry run python3 examples/sample_test.py  
-          
+          poetry run robot --outputdir reports src/framework/core/smoke.robot
         # python3 examples/sample_test.py
         # robot --outputdir reports src/framework/core/smoke.robot
 
