@@ -3,6 +3,8 @@ name: Robot Framework CI
 on:
   push:
     branches: [ "main" ]
+  push:
+    branches: [ "packaging_framework" ]    
   pull_request:
     branches: [ "main" ]
 
