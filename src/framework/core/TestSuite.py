@@ -1,8 +1,8 @@
 
-from TestCase import TestCase, LoginTest, PaymentTest
-from Logger import Logger
-from Browser import Browser
-import CustomExceptions
+from framework.core.TestCase import TestCase, LoginTest, PaymentTest
+from framework.logging.Logger import Logger
+from framework.core.Browser import Browser
+import framework.core.CustomExceptions as CustomExceptions
 from pathlib import Path
 from datetime import datetime
 

@@ -1,9 +1,9 @@
 
 
 from abc import ABC, abstractmethod
-from Browser import Browser
-from Logger import Logger
-from CustomExceptions import InvalidUrlError
+from framework.core.Browser import Browser
+from framework.logging.Logger import Logger
+from framework.core.CustomExceptions import InvalidUrlError
 from datetime import datetime
 from functools import wraps
 

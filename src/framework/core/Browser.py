@@ -1,7 +1,6 @@
 
-from Logger import Logger
-import CustomExceptions
-from CustomExceptions import InvalidUrlError, InvalidBrowserNameError, BrowserClosedError
+from framework.logging.Logger import Logger
+from framework.core.CustomExceptions import CustomExceptions
 
 class Browser():
 
@@ -17,7 +16,7 @@ class Browser():
     @browser_name.setter
     def browser_name(self, name):
         if name not in ["Chrome", "Firefox", "Edge"]:
-            raise InvalidBrowserNameError("Invalid browser name")
+            raise CustomExceptions.InvalidBrowserNameError("Invalid browser name")
             # raise Exception("Invalid browser name")
         
         self._browser_name = name
@@ -36,7 +35,7 @@ class Browser():
         # print(f"validating url: {Browser.validate_url(url)}")
         self.logger.info(f"validating url: {Browser.validate_url(url)}")
         if not (Browser.validate_url(url)):
-            raise InvalidUrlError("Invalid url")
+            raise CustomExceptions.InvalidUrlError("Invalid url")
             # raise Exception("Invalid url")
         
         if self._is_open == True:
@@ -46,7 +45,7 @@ class Browser():
             # print(f"{self._browser_name} browser is closed")
             self.logger.info(f"{self._browser_name} browser is closed")
             # raise Exception(f"{self._browser_name} browser is closed")
-            raise BrowserClosedError(f"{self._browser_name} browser is closed")
+            raise CustomExceptions.BrowserClosedError(f"{self._browser_name} browser is closed")
 
     def click(self, element):
         if self._is_open == True:
@@ -54,7 +53,7 @@ class Browser():
         else:
             print(f"{self._browser_name} browser is closed")
             # raise Exception(f"{self._browser_name} browser is closed")
-            raise BrowserClosedError(f"{self._browser_name} browser is closed")
+            raise CustomExceptions.BrowserClosedError(f"{self._browser_name} browser is closed")
 
     def type_text(self, element, text):
         if self._is_open == True:
@@ -62,7 +61,7 @@ class Browser():
         else:
             print(f"{self._browser_name} browser is closed")
             # raise Exception(f"{self._browser_name} browser is closed")
-            raise BrowserClosedError(f"{self._browser_name} browser is closed")
+            raise CustomExceptions.BrowserClosedError(f"{self._browser_name} browser is closed")
     
     def take_screenshot(self):
         if self._is_open == True:
@@ -70,7 +69,7 @@ class Browser():
         else:
             print(f"{self._browser_name} browser is closed")
             # raise Exception(f"{self._browser_name} browser is closed")
-            raise BrowserClosedError(f"{self._browser_name} browser is closed")
+            raise CustomExceptions.BrowserClosedError(f"{self._browser_name} browser is closed")
         
     @staticmethod
     def validate_url(url):
@@ -83,9 +82,9 @@ if __name__ == "__main__":
     browser.open()
     try:
         browser.navigate("https://google.com")
-    except InvalidUrlError as e:
+    except CustomExceptions.InvalidUrlError as e:
         logger.error(e)
-    except BrowserClosedError as e:
+    except CustomExceptions.BrowserClosedError as e:
         logger.error(e)
     except Exception as e:
         logger.error(e)
