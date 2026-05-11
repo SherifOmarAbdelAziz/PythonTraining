@@ -25,18 +25,26 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install package
-        run: pip install -e .
+      - name: Install Poetry
+        run: pip install poetry
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      # - name: Install package
+      #   #run: pip install -e .
+
+      # - name: Install dependencies
+      #   run: |
+      #   python -m pip install --upgrade pip
+      #   pip install -r requirements.txt
+
+      - name: Install package
+        run: poetry install
 
       - name: Run TestSuite
-        run: |  
-          python3 examples/sample_test.py
-          robot --outputdir reports src/framework/core/smoke.robot
+        run: |
+          poetry run python3 examples/sample_test.py  
+          
+        # python3 examples/sample_test.py
+        # robot --outputdir reports src/framework/core/smoke.robot
 
       - name: Run Dummy Step
         run: >
@@ -59,7 +67,7 @@ jobs:
       # 4- set permissions: read & write
       # 5- create index page
       # 6- after verifying reports generation, 
-      #    set deploy env in deply step:
+      #    set deploy env in deploy step:
       #       environment:
       #       name: github-pages
       #       url: ${{ steps.deployment.outputs.page_url }}
