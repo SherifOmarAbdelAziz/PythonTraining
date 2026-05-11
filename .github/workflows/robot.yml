@@ -29,10 +29,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Robot tests
-        run: |
-          robot --outputdir reports tests/
-        
+      - name: Run TestSuite
+        run: |  
+          python3 tests/TestSuite.py
+          robot --outputdir reports tests/smoke.robot
+
       - name: Run Dummy Step
         run: >
           echo "Hello from"
@@ -47,6 +48,18 @@ jobs:
       #       output.xml
       #       report.html
 
+      # to deploy reports:
+      # 1- make repo public
+      # 2- enable GitHub Pages
+      # 3- in setting/pages, set source to github actions instead of main branch
+      # 4- set permissions: read & write
+      # 5- create index page
+      # 6- after verifying reports generation, 
+      #    set deploy env in deply step:
+      #       environment:
+      #       name: github-pages
+      #       url: ${{ steps.deployment.outputs.page_url }}
+      # note: github takes at least 5 mins. to populate the page site
       - name: Create index page
         run: |
           if [ -f reports/report.html ]; then
